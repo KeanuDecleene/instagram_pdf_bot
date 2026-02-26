@@ -72,22 +72,22 @@ async function sendEmail(email) {
   await sgMail.send(msg);
 }
 
-// app.get("/test-email", async (req, res) => {
-//   try {
-//     const msg = {
-//       to: "keanudecleene124@gmail.com",
-//       from: process.env.FROM_EMAIL,
-//       subject: "SendGrid Test ",
-//       text: "If you received this, SendGrid is working.",
-//     };
+app.get("/test-email", async (req, res) => {
+  try {
+    const msg = {
+      to: "keanudecleene124@gmail.com",
+      from: process.env.FROM_EMAIL,
+      subject: "SendGrid Test ",
+      text: "If you received this, SendGrid is working.",
+    };
 
-//     await sgMail.send(msg);
-//     res.send("Test email sent successfully!");
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send("Email failed");
-//   }
-// });
+    await sgMail.send(msg);
+    res.send("Test email sent successfully!");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Email failed");
+  }
+});
 
 app.listen(process.env.PORT || 3000, () => {
   console.log("Server is running");
