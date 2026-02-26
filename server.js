@@ -30,19 +30,20 @@ app.get("webhook", (req, res) => {
   }
 });
 
-// listends for webhook post request and sends an email
+// listens for webhook post request and sends an email if valid
 app.post("/webhook", async (req, res) => {
   try {
     const entry = req.body.entry?.[0];
     const msg = entry?.messaging?.[0];
-    const messageText = messaging?.message?.text.trim();
+    const messageText = msg?.message?.text?.trim();
 
     if (messageText && validateEmail(messageText)) {
-      await sendEmail(msgText);
-      console.log(`Email sent to ${msgText}`);
+      await sendEmail(messageText);
+      console.log(`Email sent to ${messageText}`);
     }
   } catch (error) {
     console.error("Error processing webhook:", error);
+    res.sendStatus(500);
   }
 });
 
@@ -76,7 +77,7 @@ async function sendEmail(email) {
 //     const msg = {
 //       to: "keanudecleene124@gmail.com",
 //       from: process.env.FROM_EMAIL,
-//       subject: "SendGrid Test ✅",
+//       subject: "SendGrid Test ",
 //       text: "If you received this, SendGrid is working.",
 //     };
 
