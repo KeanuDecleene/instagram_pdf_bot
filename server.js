@@ -47,6 +47,45 @@ app.post("/webhook", async (req, res) => {
   }
 });
 
+app.get("/privacy", (req, res) => {
+  res.send(`
+    <h1>Privacy Policy</h1>
+    <p>Last updated: ${new Date().toDateString()}</p>
+
+    <p>This application ("pdf email-IG") is operated by Keanu De Cleene.</p>
+
+    <h2>Information We Collect</h2>
+    <p>We may collect Instagram usernames, message content, and email addresses provided voluntarily by users via Instagram Direct Messages.</p>
+
+    <h2>How We Use Information</h2>
+    <p>Collected information is used solely to:
+      <ul>
+        <li>Respond to Instagram Direct messages</li>
+        <li>Send requested PDF document</li>
+        <li>Provide automated responses</li>
+      </ul>
+    </p>
+
+    <h2>Data Storage</h2>
+    <p>We do not sell, rent, or share user data. Information is not stored permanently unless required for email delivery.</p>
+
+    <h2>Data Deletion</h2>
+    <p>Users may request deletion of their data by emailing: keanudecleene124@gmail.com</p>
+
+    <h2>Contact</h2>
+    <p>Email: keanudecleene124@gmail.com</p>
+  `);
+});
+
+app.get("/data-deletion", (req, res) => {
+  res.send(`
+    <h1>Data Deletion Instructions</h1>
+    <p>If you would like your data removed from our systems, please email:</p>
+    <p><strong>keanudecleene124@gmail.com</strong></p>
+    <p>Include your Instagram username and request for data deletion.</p>
+  `);
+});
+
 /**
  * function to send an email with a workout plan pdf attached using SendGrid
  * @param {email to send to} email
