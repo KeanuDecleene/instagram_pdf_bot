@@ -1,5 +1,5 @@
 /**
- * express server to handle a webhook for receiving email addresses and sending a workout pdf using SendGrid
+ * express server to handle a instagram webhook for receiving email addresses and sending requested workout pdf using SendGrid
  */
 
 require("dotenv").config();
@@ -61,13 +61,13 @@ app.get("/privacy", (req, res) => {
     <p>Collected information is used solely to:
       <ul>
         <li>Respond to Instagram Direct messages</li>
-        <li>Send requested PDF document</li>
+        <li>Send requested PDF document to given email</li>
         <li>Provide automated responses</li>
       </ul>
     </p>
 
     <h2>Data Storage</h2>
-    <p>We do not sell, rent, or share user data. Information is not stored permanently unless required for email delivery.</p>
+    <p>We do not sell, rent, or share user data. Information is not stored permanently</p>
 
     <h2>Data Deletion</h2>
     <p>Users may request deletion of their data by emailing: keanudecleene124@gmail.com</p>
@@ -80,7 +80,7 @@ app.get("/privacy", (req, res) => {
 app.get("/data-deletion", (req, res) => {
   res.send(`
     <h1>Data Deletion Instructions</h1>
-    <p>If you would like your data removed from our systems, please email:</p>
+    <p>If you would like your data removed please email:</p>
     <p><strong>keanudecleene124@gmail.com</strong></p>
     <p>Include your Instagram username and request for data deletion.</p>
   `);
