@@ -37,9 +37,15 @@ app.post("/webhook", async (req, res) => {
     const msg = entry?.messaging?.[0];
     const messageText = msg?.message?.text?.trim();
 
-    if (messageText && validateEmail(messageText)) {
-      await sendEmail(messageText);
-      console.log(`Email sent to ${messageText}`);
+    if (messageText) {
+      const email = extractEmail(messageText);
+
+      if (email) {
+        await sendEmail(email);
+        console.log(`Email sent to ${email}`);
+      } else {
+        console.log("No valid email found in message");
+      }
     }
   } catch (error) {
     console.error("Error processing webhook:", error);
@@ -85,6 +91,16 @@ app.get("/data-deletion", (req, res) => {
     <p>Include your Instagram username and request for data deletion.</p>
   `);
 });
+
+/**
+ * Extracts an email from a string
+ * @param {string} text
+ * @returns {string|null}
+ */
+function extractEmail(text) {
+  const match = text.match(/[^\s@]+@[^\s@]+\.[^\s@]+/);
+  return match ? match[0] : null;
+}
 
 /**
  * function to send an email with a workout plan pdf attached using SendGrid
