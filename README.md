@@ -1,4 +1,4 @@
-META approval stopped me from deploying this project due to needing a verified business connected.
+META approval stopped me from deploying this due to needing a verified business connected.
 
 Everything that was working.
 Node/Express webhook service hosted on Render. Extracted user email text and sent PDF resources automatically via email.
